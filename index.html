@@ -1,0 +1,131 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen" />
+<link rel="stylesheet" href="stylesheets/pygment_trac.css" />
+<script type="text/javascript" src="javascripts/script.js"></script>
+<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery.masonry.min.js"></script>
+<title>Music</title>
+<meta name="description" content="music... feel good">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+	<div class="wrapper">
+		<header>
+			<h1 class="title">Music</h1>
+		</header>
+		<div id="container">
+			<p class="tagline">the music sound beautiful~~~</p>
+			<div id="main" role="main">
+				<div class="download-bar">
+					<p style="float: right; margin: -12px 10px; color: #63a52a"></p>
+				</div>
+				<div id="container-inner">
+					<article class="markdown-body item">
+						<h1>every moment of my life — sarah connor</h1>
+						<embed height="500px" width="600px" allowscriptaccess="never"
+							style="visibility: visible;"
+							pluginspage="http://get.adobe.com/cn/flashplayer/"
+							allowfullscreen="true" quality="high"
+							src="http://player.youku.com/player.php/sid/XOTA3ODU4NDQ=/v.swf"
+							type="application/x-shockwave-flash" wmode="transparent">
+					</article>
+					<article height="500px" width="600px" class="markdown-body item">
+						<h1>Mark Knopfler What It Is</h1>
+						<embed height="500px" width="600px" allowscriptaccess="never"
+							style="visibility: visible;"
+							pluginspage="http://get.adobe.com/cn/flashplayer/"
+							allowfullscreen="true" quality="high"
+							src="http://player.youku.com/player.php/sid/XMjU5MzkwMTY=/v.swf"
+							type="application/x-shockwave-flash" wmode="transparent">
+					</article>
+				</div>
+				<div id="loading" class="loading-wrap">
+					<span class="loading">加载中，请稍后...</span>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="owner">
+				<p>
+					<a href="https://github.com/0oo" class="avatar"><img
+						src="https://secure.gravatar.com/avatar/688202f145e6419b02b447cef76d00c8?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+						width="48" height="48" /></a> <a href="https://github.com/0oo">0oo</a>
+					maintains <a href="https://github.com/0oo/music">Music</a>
+				</p>
+			</div>
+			<div class="creds">
+				<small>This page modify by 0oo</small>
+			</div>
+		</footer>
+	</div>
+	<div class="current-section">
+		<a href="#top">Scroll to top</a>
+		<p class="name"></p>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			var i = 1;
+			var $container = $('#container-inner');
+			$container.masonry({
+				itemSelector : '.item',
+				columnWidth : 420,
+				isAnimated : false
+			});
+			var loading = $("#loading").data("on", false);
+			$(window).scroll(
+					function() {
+						if (loading.data("on"))
+							return;
+						if ($(document).scrollTop() > $(document).height()
+								- $(window).height() - $('footer').height()
+								- $(".current-section").height()) {
+							loading.data("on", true).fadeIn();
+							$.ajax({
+								url : "data/" + (i++) + ".htm",
+								type : "get",
+								data : null,
+								dataType : "html",
+								success : function(data) {
+									var $newElems = $(data).css({
+										opacity : 0
+									}).appendTo($container);
+									$newElems.imagesLoaded(function() {
+										$newElems.animate({
+											opacity : 1
+										});
+										$container.masonry('appended',
+												$newElems, true);
+									});
+									loading.data("on", false);
+									loading.fadeOut();
+								},
+								error : function(XMLHttpRequest, textStatus,
+										errorThrown) {
+									//loading.data("on", false);
+									loading.fadeOut();
+
+								}
+							});
+
+						}
+					});
+		});
+	</script>
+
+	<script type="text/javascript">
+		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://"
+				: " http://");
+		document
+				.write(unescape("%3Cscript src='"
+						+ _bdhmProtocol
+						+ "hm.baidu.com/h.js%3F4796987f8bdc116d2f380598b2fadfc4' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+
+</body>
+</html>
